@@ -11,7 +11,7 @@ export interface Recipe {
   imageUrl: string;
 }
 
-// FIX: Define and export the User interface. This was missing, causing an import error.
+// FIX: Define and export the User interface to resolve the "has no exported member 'User'" error.
 export interface User {
   id: number;
   username: string;

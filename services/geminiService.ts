@@ -1,79 +1,53 @@
-import { GoogleGenAI, Type } from "@google/genai";
 import { Recipe } from '../types';
 
-// A chave da API é esperada nas variáveis de ambiente da implantação.
-// Se a chave estiver ausente, a chamada à API falhará e o aplicativo exibirá uma mensagem de erro,
-// em vez de travar e mostrar uma página em branco.
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
-const recipeSchema = {
-  type: Type.OBJECT,
-  properties: {
-    title: { type: Type.STRING },
-    description: { type: Type.STRING },
-    prepTime: { type: Type.STRING },
-    servings: { type: Type.STRING },
-    difficulty: { type: Type.STRING },
-    ingredients: { type: Type.ARRAY, items: { type: Type.STRING } },
-    instructions: { type: Type.ARRAY, items: { type: Type.STRING } },
-    tips: { type: Type.ARRAY, items: { type: Type.STRING } },
-  },
-  required: ["title", "description", "prepTime", "servings", "difficulty", "ingredients", "instructions"]
+// Dados da Receita de Exemplo
+const mockRecipe: Recipe = {
+  title: "Macarrão ao Pesto Clássico",
+  description: "Uma receita italiana rápida e vibrante, perfeita para uma refeição de semana. O frescor do manjericão e o sabor marcante do alho e parmesão criam um prato inesquecível.",
+  prepTime: "20 minutos",
+  servings: "2 porções",
+  difficulty: "Fácil",
+  ingredients: [
+    "200g de espaguete ou seu macarrão favorito",
+    "2 xícaras de folhas de manjericão fresco",
+    "1/2 xícara de queijo parmesão ralado na hora",
+    "1/4 xícara de pinoli ou nozes",
+    "2 dentes de alho grandes, descascados",
+    "1/2 xícara de azeite de oliva extra virgem",
+    "Sal e pimenta do reino a gosto"
+  ],
+  instructions: [
+    "Cozinhe o macarrão em água fervente com sal conforme as instruções da embalagem até ficar 'al dente'.",
+    "Enquanto o macarrão cozinha, prepare o molho pesto. Em um processador, bata o manjericão, o parmesão, os pinoli e o alho até picar bem.",
+    "Com o processador ligado, adicione o azeite em um fio lento e contínuo até formar uma emulsão cremosa.",
+    "Tempere com sal e pimenta a gosto. Se o pesto estiver muito denso, adicione uma colher de sopa da água do cozimento do macarrão.",
+    "Escorra o macarrão, reservando um pouco da água do cozimento.",
+    "Misture o macarrão quente com o molho pesto, adicionando a água reservada aos poucos se necessário para atingir a consistência desejada.",
+    "Sirva imediatamente, com mais queijo parmesão por cima."
+  ],
+  tips: [
+    "Para um sabor extra, toste os pinoli ou nozes em uma frigideira seca antes de usar.",
+    "Guarde o pesto que sobrar na geladeira com uma camada de azeite por cima para evitar a oxidação."
+  ],
+  imageUrl: `https://picsum.photos/seed/MacarraoPesto/1200/600`
 };
 
+/**
+ * Simula a geração de uma receita.
+ * Esta função agora retorna uma receita de exemplo após um breve atraso
+ * para simular uma chamada de rede, permitindo que a interface do usuário
+ * exiba o estado de carregamento.
+ * @param ingredients - Ingredientes fornecidos pelo usuário (ignorado na versão mock).
+ * @param time - Tempo de preparo selecionado (ignorado na versão mock).
+ * @param difficulty - Dificuldade selecionada (ignorada na versão mock).
+ * @returns Uma promessa que resolve para a receita de exemplo.
+ */
 export const generateRecipe = async (ingredients: string, time: string, difficulty: string): Promise<Recipe> => {
-    try {
-        let prompt = `Gere uma receita criativa e deliciosa usando os seguintes ingredientes: ${ingredients}.`;
-        if (time && time !== 'any') {
-            prompt += ` O tempo de preparo deve ser de no máximo ${time} minutos.`;
-        }
-        if (difficulty && difficulty !== 'any') {
-            prompt += ` A dificuldade deve ser ${difficulty}.`;
-        }
-        prompt += " A receita deve ser apresentada em português do Brasil.";
-        
-        // 1. Gera o conteúdo da receita
-        const recipeResponse = await ai.models.generateContent({
-            model: "gemini-2.5-flash",
-            contents: prompt,
-            config: {
-                responseMimeType: "application/json",
-                responseSchema: recipeSchema,
-            },
-        });
-        
-        const recipeJsonText = recipeResponse.text;
-        if (!recipeJsonText) {
-            throw new Error("A API não retornou conteúdo para a receita.");
-        }
-        const recipeData = JSON.parse(recipeJsonText);
+    console.log(`Gerando receita de exemplo com base em: Ingredientes=${ingredients}, Tempo=${time}, Dificuldade=${difficulty}`);
 
-        // 2. Gera a imagem da receita
-        const imagePrompt = `Uma foto de comida profissional e apetitosa da seguinte receita: ${recipeData.title}. Foco na textura e nos ingredientes frescos, com iluminação natural. Estilo de fotografia de comida de revista.`;
+    // Simula uma chamada de rede para que o spinner de carregamento apareça.
+    await new Promise(resolve => setTimeout(resolve, 1500));
 
-        const imageResponse = await ai.models.generateImages({
-            model: 'imagen-4.0-generate-001',
-            prompt: imagePrompt,
-            config: {
-                numberOfImages: 1,
-                outputMimeType: 'image/jpeg',
-                aspectRatio: '16:9',
-            },
-        });
-
-        const base64ImageBytes = imageResponse.generatedImages[0]?.image?.imageBytes;
-        if (!base64ImageBytes) {
-           throw new Error("Não foi possível gerar a imagem para a receita.");
-        }
-        const imageUrl = `data:image/jpeg;base64,${base64ImageBytes}`;
-
-        return { ...recipeData, imageUrl };
-
-    } catch (error) {
-        console.error("Erro ao gerar receita:", error);
-        if (error instanceof Error) {
-            throw new Error(`Falha na geração da receita: ${error.message}`);
-        }
-        throw new Error("Ocorreu um erro desconhecido ao gerar a receita.");
-    }
+    // Retorna a receita de exemplo, ignorando os inputs do usuário.
+    return mockRecipe;
 };
