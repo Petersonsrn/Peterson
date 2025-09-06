@@ -1,9 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Recipe } from '../types';
 
-if (!process.env.API_KEY) {
-    throw new Error("A chave da API (API_KEY) não foi encontrada. Por favor, configure sua chave de API para habilitar a geração de receitas.");
-}
+// A chave da API é esperada nas variáveis de ambiente da implantação.
+// Se a chave estiver ausente, a chamada à API falhará e o aplicativo exibirá uma mensagem de erro,
+// em vez de travar e mostrar uma página em branco.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const recipeSchema = {
