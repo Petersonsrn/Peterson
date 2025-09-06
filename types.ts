@@ -10,3 +10,10 @@ export interface Recipe {
   tips: string[];
   imageUrl: string;
 }
+
+// FIX: Define and export the User interface. This was missing, causing an import error.
+export interface User {
+  id: number;
+  username: string;
+  email: string;
+}

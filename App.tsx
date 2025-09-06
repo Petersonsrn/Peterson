@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Header } from './components/Header';
 import { RecipeGenerator } from './components/RecipeGenerator';
 import { RecipeDisplay } from './components/RecipeDisplay';
@@ -27,15 +27,16 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-amber-50 font-sans">
+    <div className="flex flex-col min-h-screen font-sans">
       <Header />
+
       <main className="container mx-auto px-4 py-8 md:py-12 flex-grow">
         <RecipeGenerator generateRecipe={generateRecipe} isGenerating={isGenerating} />
 
         {error && <ErrorDisplay error={error} onRetry={retry} onDismiss={() => setError(null)} />}
 
         {recipe && !isGenerating && !error && (
-          <div className="mt-12">
+          <div className="mt-20">
             <RecipeDisplay 
               recipe={recipe} 
               onToggleFavorite={handleToggleFavorite}
@@ -45,18 +46,16 @@ function App() {
         )}
 
         {!recipe && !isGenerating && !error && (
-          <div className="mt-12">
+          <div className="mt-20">
             <InitialInspiration onCategoryClick={generateRecipeFromCategory} />
           </div>
         )}
 
-        {favorites.length > 0 && (
-          <Favorites
-            favorites={favorites}
-            onToggleFavorite={handleToggleFavorite}
-            isFavorite={isFavorite}
-          />
-        )}
+        <Favorites
+          favorites={favorites}
+          onToggleFavorite={handleToggleFavorite}
+          isFavorite={isFavorite}
+        />
       </main>
 
       <Footer />

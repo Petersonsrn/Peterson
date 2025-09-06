@@ -22,14 +22,14 @@ const inspirationCategories = [
 export const InitialInspiration: React.FC<InitialInspirationProps> = ({ onCategoryClick }) => {
   return (
     <div className="text-center">
-      <h3 className="text-2xl font-bold text-amber-900 mb-2 font-display">Sem ideias?</h3>
-      <p className="text-gray-600 mb-6">Comece com uma destas categorias populares.</p>
+      <h3 className="text-3xl font-bold text-amber-900 mb-2 font-display">Sem ideias?</h3>
+      <p className="text-gray-700 mb-6 text-lg">Comece com uma destas categorias populares.</p>
       <div className="flex flex-wrap justify-center gap-4">
         {inspirationCategories.map(({ name, icon: Icon, category }) => (
           <button
             key={name}
             onClick={() => onCategoryClick(category)}
-            className="flex items-center gap-3 px-5 py-3 bg-white border-2 border-amber-200 rounded-full text-amber-800 font-semibold hover:bg-amber-100 hover:border-amber-300 transition-all shadow-sm"
+            className="flex items-center gap-3 px-5 py-3 bg-white border-2 border-amber-200 rounded-full text-amber-800 font-semibold text-lg hover:bg-amber-100 hover:border-amber-300 transition-all shadow-sm"
           >
             <Icon className="h-6 w-6" />
             <span>{name}</span>

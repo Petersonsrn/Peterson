@@ -1,22 +1,20 @@
-import { Recipe } from '../types';
+import { Recipe, User } from '../types';
 
-// FIX: Define the base URL for the backend API.
-const API_BASE_URL = '/api'; // Assuming a proxy is set up for development
+const API_BASE_URL = '/api';
 
-// FIX: Helper function to get authorization headers with the JWT token.
+// Helper function to get authorization headers with the JWT token.
 const getAuthHeaders = () => {
   const token = localStorage.getItem('authToken');
-  return token
-    ? {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      }
-    : {
-        'Content-Type': 'application/json',
-      };
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+  return headers;
 };
 
-// FIX: Helper function to handle API responses and errors.
+// Helper function to handle API responses and errors.
 const handleResponse = async (response: Response) => {
   const data = await response.json();
   if (!response.ok) {
@@ -25,8 +23,8 @@ const handleResponse = async (response: Response) => {
   return data;
 };
 
-// FIX: Implement and export API functions for user authentication.
-export const registerUser = async (credentials: any) => {
+// API functions for user authentication.
+export const registerUser = async (credentials: any): Promise<{ token: string; user: User }> => {
   const response = await fetch(`${API_BASE_URL}/users/register`, {
     method: 'POST',
     headers: getAuthHeaders(),
@@ -35,7 +33,7 @@ export const registerUser = async (credentials: any) => {
   return handleResponse(response);
 };
 
-export const loginUser = async (credentials: any) => {
+export const loginUser = async (credentials: any): Promise<{ token: string; user: User }> => {
   const response = await fetch(`${API_BASE_URL}/users/login`, {
     method: 'POST',
     headers: getAuthHeaders(),
@@ -44,7 +42,7 @@ export const loginUser = async (credentials: any) => {
   return handleResponse(response);
 };
 
-export const getUserProfile = async () => {
+export const getUserProfile = async (): Promise<{ user: User }> => {
   const response = await fetch(`${API_BASE_URL}/users/profile`, {
     method: 'GET',
     headers: getAuthHeaders(),
@@ -52,7 +50,7 @@ export const getUserProfile = async () => {
   return handleResponse(response);
 };
 
-// FIX: Implement and export API functions for managing favorite recipes.
+// API functions for managing favorite recipes.
 export const getFavoriteRecipes = async (): Promise<Recipe[]> => {
     const response = await fetch(`${API_BASE_URL}/recipes/favorites`, {
         method: 'GET',

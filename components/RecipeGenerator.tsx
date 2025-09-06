@@ -35,12 +35,12 @@ export const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({ generateRecipe
   }, [ingredients, time, difficulty, generateRecipe, isGenerating]);
 
   return (
-    <section id="generator-section" className="w-full max-w-3xl mx-auto bg-white p-6 md:p-8 rounded-3xl shadow-lg">
-      <h2 className="text-2xl md:text-3xl font-bold text-amber-900 text-center mb-6 font-display">Crie sua receita perfeita!</h2>
+    <section id="generator-section" className="w-full max-w-3xl mx-auto bg-white p-10 md:p-12 rounded-3xl shadow-xl">
+      <h2 className="text-3xl md:text-4xl font-bold text-amber-900 text-center mb-6 font-display">Crie sua receita perfeita!</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="relative">
-          <label htmlFor="ingredients" className="block text-sm font-semibold text-gray-700 mb-2">
-            Quais ingredientes você tem?
+          <label htmlFor="ingredients" className="block text-lg font-semibold text-gray-800 mb-2">
+            Quais ingredientes você tem em casa?
           </label>
           <div className="relative">
             <input
@@ -49,7 +49,7 @@ export const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({ generateRecipe
               value={ingredients}
               onChange={handleIngredientsChange}
               onBlur={() => setTimeout(clearSuggestions, 200)}
-              className="w-full pl-4 pr-10 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              className="w-full pl-4 pr-10 py-3 text-lg bg-white text-gray-900 placeholder-gray-400 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
               placeholder="Ex: frango, tomate, arroz"
               autoComplete="off"
             />
@@ -67,19 +67,19 @@ export const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({ generateRecipe
               </ul>
             )}
           </div>
-          <p className="text-xs text-gray-500 mt-1">Separe os ingredientes por vírgula.</p>
+          <p className="text-lg text-gray-600 mt-2">Comece digitando os ingredientes que você tem, separados por vírgulas.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="time" className="block text-sm font-semibold text-gray-700 mb-2">
+            <label htmlFor="time" className="block text-lg font-semibold text-gray-800 mb-2">
               Tempo de Preparo
             </label>
             <select
               id="time"
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white text-gray-700 font-semibold"
+              className="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white text-gray-700 font-semibold"
             >
               <option value="any">Qualquer tempo</option>
               <option value="15">Até 15 min</option>
@@ -88,14 +88,14 @@ export const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({ generateRecipe
             </select>
           </div>
           <div>
-            <label htmlFor="difficulty" className="block text-sm font-semibold text-gray-700 mb-2">
+            <label htmlFor="difficulty" className="block text-lg font-semibold text-gray-800 mb-2">
               Dificuldade
             </label>
             <select
               id="difficulty"
               value={difficulty}
               onChange={(e) => setDifficulty(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white text-gray-700 font-semibold"
+              className="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white text-gray-700 font-semibold"
             >
               <option value="any">Qualquer uma</option>
               <option value="Fácil">Fácil</option>
@@ -108,16 +108,16 @@ export const RecipeGenerator: React.FC<RecipeGeneratorProps> = ({ generateRecipe
         <button
           type="submit"
           disabled={isGenerating || !ingredients.trim()}
-          className="w-full flex items-center justify-center py-3 px-6 bg-amber-600 text-white font-bold text-lg rounded-full hover:bg-amber-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+          className="w-full flex items-center justify-center py-5 px-6 bg-amber-900 text-white font-bold text-2xl rounded-full hover:bg-amber-800 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
         >
           {isGenerating ? (
             <>
-              <CookingSpinner className="h-6 w-6 mr-3" />
+              <CookingSpinner className="h-8 w-8 mr-3" />
               <span>Gerando Mágica...</span>
             </>
           ) : (
             <>
-              <SearchIcon className="h-6 w-6 mr-3" />
+              <SearchIcon className="h-8 w-8 mr-3" />
               <span>Gerar Receita</span>
             </>
           )}
