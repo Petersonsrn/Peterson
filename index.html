@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M7 14.225c0 .399-.08.79-.232 1.162-.325.815-1.13 1.363-2.018 1.363h-.5a2.25 2.25 0 0 1-2.25-2.25v-1.5a2.25 2.25 0 0 1 2.25-2.25h.5c.888 0 1.693.548 2.018 1.363.152.372.232.763.232 1.162Z' /%3e%3cpath d='M22 13.225c0-.399.08-.79.232-1.162.325-.815 1.13-1.363 2.018-1.363h.5a2.25 2.25 0 0 1 2.25 2.25v1.5a2.25 2.25 0 0 1-2.25-2.25h-.5c-.888 0-1.693-.548-2.018-1.363A2.493 2.493 0 0 1 22 14.725Z' transform='matrix(-1 0 0 1 24 0)' /%3e%3cpath d='M4 14.725V18a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3.275' /%3e%3cpath d='M5 10a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2H5v-2Z' /%3e%3cpath d='M12 2v2' /%3e%3cpath d='M15 4v2' /%3e%3cpath d='M9 4v2' /%3e%3c/svg%3e" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chef IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+      }
+      h1, h2, h3, .font-display {
+        font-family: 'Playfair Display', serif;
+      }
+      @keyframes scale-pulse {
+        50% {
+          transform: scale(1.02);
+        }
+      }
+      .animate-scale-pulse {
+        animation: scale-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes steam-rise {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-4px);
+        }
+      }
+      .animate-steam {
+        animation: steam-rise 1.5s ease-out infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.17.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-amber-50">
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>
