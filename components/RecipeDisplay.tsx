@@ -1,16 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Recipe } from '../types';
-import { ClockIcon } from './icons/ClockIcon';
-import { ServingsIcon } from './icons/ServingsIcon';
-import { DifficultyIcon } from './icons/DifficultyIcon';
-import { StarIcon } from './icons/StarIcon';
-import { PrintIcon } from './icons/PrintIcon';
-import { TipIcon } from './icons/TipIcon';
-import { PlayIcon } from './icons/PlayIcon';
-import { CookingView } from './CookingView';
-import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis';
-import { SpeakerIcon } from './icons/SpeakerIcon';
-import { SpeakerOffIcon } from './icons/SpeakerOffIcon';
+import { Recipe } from '../types.ts';
+import { ClockIcon } from './icons/ClockIcon.tsx';
+import { ServingsIcon } from './icons/ServingsIcon.tsx';
+import { DifficultyIcon } from './icons/DifficultyIcon.tsx';
+import { StarIcon } from './icons/StarIcon.tsx';
+import { PrintIcon } from './icons/PrintIcon.tsx';
+import { TipIcon } from './icons/TipIcon.tsx';
+import { PlayIcon } from './icons/PlayIcon.tsx';
+import { CookingView } from './CookingView.tsx';
+import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis.ts';
+import { SpeakerIcon } from './icons/SpeakerIcon.tsx';
+import { SpeakerOffIcon } from './icons/SpeakerOffIcon.tsx';
 
 interface RecipeDisplayProps {
   recipe: Recipe;
@@ -73,20 +73,20 @@ export const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onToggleFa
         <div className="flex flex-wrap items-center justify-between gap-6 mb-8">
           <div className="flex items-center gap-8 text-lg text-gray-700">
             <span className="flex items-center gap-2 font-semibold">
-              <ClockIcon className="h-6 w-6 text-amber-700" />
+              <ClockIcon className="h-8 w-8 text-amber-700" />
               {recipe.prepTime}
             </span>
             <span className="flex items-center gap-2 font-semibold">
-              <ServingsIcon className="h-6 w-6 text-amber-700" />
+              <ServingsIcon className="h-8 w-8 text-amber-700" />
               {recipe.servings}
             </span>
             <span className="flex items-center gap-2 font-semibold">
-              <DifficultyIcon className="h-6 w-6 text-amber-700" />
+              <DifficultyIcon className="h-8 w-8 text-amber-700" />
               {recipe.difficulty}
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="print:hidden flex items-center gap-4">
             <button
               onClick={() => onToggleFavorite(recipe)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full font-semibold transition-colors ${
@@ -96,7 +96,7 @@ export const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onToggleFa
               }`}
               aria-label="Toggle Favorite"
             >
-              <StarIcon className={`h-6 w-6 ${isFavorite ? 'text-yellow-900' : ''}`} />
+              <StarIcon className={`h-8 w-8 ${isFavorite ? 'text-yellow-900' : ''}`} />
               <span>{isFavorite ? 'Salvo' : 'Salvar'}</span>
             </button>
             <button
@@ -104,7 +104,7 @@ export const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onToggleFa
               className="p-3 bg-gray-200 text-gray-800 rounded-full hover:bg-gray-300 transition-colors"
               aria-label="Print Recipe"
             >
-              <PrintIcon className="h-6 w-6" />
+              <PrintIcon className="h-8 w-8" />
             </button>
           </div>
         </div>
@@ -123,9 +123,12 @@ export const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onToggleFa
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1">
             <h3 className="text-3xl font-bold text-amber-900 font-display mb-4 border-b-4 border-amber-300 pb-2">Ingredientes</h3>
-            <ul className="space-y-3 text-lg list-disc list-inside text-gray-800">
+            <ul className="space-y-3 text-lg list-none text-gray-800">
               {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
+                <li key={index} className="flex items-center gap-3">
+                  <span className="text-amber-700">🍃</span>
+                  <span>{ingredient}</span>
+                </li>
               ))}
             </ul>
           </div>
@@ -162,9 +165,12 @@ export const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onToggleFa
               <TipIcon className="h-7 w-7"/>
               Dicas do Chef
             </h3>
-            <ul className="space-y-2 text-lg list-disc list-inside text-gray-800">
+            <ul className="space-y-2 text-lg list-none text-gray-800">
               {recipe.tips.map((tip, index) => (
-                <li key={index}>{tip}</li>
+                 <li key={index} className="flex items-start gap-3">
+                    <TipIcon className="h-7 w-7 flex-shrink-0 text-amber-600 mt-1" />
+                    <span>{tip}</span>
+                </li>
               ))}
             </ul>
           </div>

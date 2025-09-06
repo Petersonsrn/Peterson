@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import { Recipe } from '../types';
-import { generateRecipe as generateRecipeService } from '../services/geminiService';
+import { Recipe } from '../types.ts';
+import { generateRecipe as generateRecipeService } from '../services/geminiService.ts';
 
 interface LastArgs {
   ingredients: string;

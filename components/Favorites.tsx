@@ -1,9 +1,9 @@
 import React from 'react';
-import { Recipe } from '../types';
-import { StarIcon } from './icons/StarIcon';
-import { ClockIcon } from './icons/ClockIcon';
-import { DifficultyIcon } from './icons/DifficultyIcon';
-import { PotIcon } from './icons/PotIcon';
+import { Recipe } from '../types.ts';
+import { StarIcon } from './icons/StarIcon.tsx';
+import { ClockIcon } from './icons/ClockIcon.tsx';
+import { DifficultyIcon } from './icons/DifficultyIcon.tsx';
+import { PotIcon } from './icons/PotIcon.tsx';
 
 interface FavoritesProps {
   favorites: Recipe[];

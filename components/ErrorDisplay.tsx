@@ -1,5 +1,5 @@
 import React from 'react';
-import { WarningIcon } from './icons/WarningIcon';
+import { WarningIcon } from './icons/WarningIcon.tsx';
 
 interface ErrorDisplayProps {
   error: string | null;

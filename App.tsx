@@ -1,14 +1,14 @@
 import React from 'react';
-import { Header } from './components/Header';
-import { RecipeGenerator } from './components/RecipeGenerator';
-import { RecipeDisplay } from './components/RecipeDisplay';
-import { Favorites } from './components/Favorites';
-import { Footer } from './components/Footer';
-import { ErrorDisplay } from './components/ErrorDisplay';
-import { InitialInspiration } from './components/InitialInspiration';
-import { useRecipeGeneration } from './hooks/useRecipeGeneration';
-import { useLocalStorage } from './hooks/useLocalStorage';
-import { Recipe } from './types';
+import { Header } from './components/Header.tsx';
+import { RecipeGenerator } from './components/RecipeGenerator.tsx';
+import { RecipeDisplay } from './components/RecipeDisplay.tsx';
+import { Favorites } from './components/Favorites.tsx';
+import { Footer } from './components/Footer.tsx';
+import { ErrorDisplay } from './components/ErrorDisplay.tsx';
+import { InitialInspiration } from './components/InitialInspiration.tsx';
+import { useRecipeGeneration } from './hooks/useRecipeGeneration.ts';
+import { useLocalStorage } from './hooks/useLocalStorage.ts';
+import { Recipe } from './types.ts';
 
 function App() {
   const { recipe, isGenerating, error, generateRecipe, generateRecipeFromCategory, retry, setError } = useRecipeGeneration();
@@ -46,7 +46,7 @@ function App() {
         )}
 
         {!recipe && !isGenerating && !error && (
-          <div className="mt-20">
+          <div id="initial-inspiration-section" className="mt-20">
             <InitialInspiration onCategoryClick={generateRecipeFromCategory} />
           </div>
         )}

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
-import { SearchIcon } from './icons/SearchIcon';
-import { CookingSpinner } from './icons/CookingSpinner';
-import { useIngredientSuggestions } from '../hooks/useIngredientSuggestions';
+import { SearchIcon } from './icons/SearchIcon.tsx';
+import { CookingSpinner } from './icons/CookingSpinner.tsx';
+import { useIngredientSuggestions } from '../hooks/useIngredientSuggestions.ts';
 
 interface RecipeGeneratorProps {
   generateRecipe: (ingredients: string, time: string, difficulty: string) => void;

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { Recipe } from '../types';
-import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis';
-import { ChevronLeftIcon } from './icons/ChevronLeftIcon';
-import { ChevronRightIcon } from './icons/ChevronRightIcon';
-import { CloseIcon } from './icons/CloseIcon';
-import { SpeakerIcon } from './icons/SpeakerIcon';
-import { SpeakerOffIcon } from './icons/SpeakerOffIcon';
+import { Recipe } from '../types.ts';
+import { useSpeechSynthesis } from '../hooks/useSpeechSynthesis.ts';
+import { ChevronLeftIcon } from './icons/ChevronLeftIcon.tsx';
+import { ChevronRightIcon } from './icons/ChevronRightIcon.tsx';
+import { CloseIcon } from './icons/CloseIcon.tsx';
+import { SpeakerIcon } from './icons/SpeakerIcon.tsx';
+import { SpeakerOffIcon } from './icons/SpeakerOffIcon.tsx';
 
 interface CookingViewProps {
   recipe: Recipe;

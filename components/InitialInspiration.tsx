@@ -1,10 +1,10 @@
 import React from 'react';
-import { BreakfastIcon } from './icons/BreakfastIcon';
-import { LunchIcon } from './icons/LunchIcon';
-import { DinnerIcon } from './icons/DinnerIcon';
-import { DessertIcon } from './icons/DessertIcon';
-import { SnackIcon } from './icons/SnackIcon';
-import { DrinkIcon } from './icons/DrinkIcon';
+import { BreakfastIcon } from './icons/BreakfastIcon.tsx';
+import { LunchIcon } from './icons/LunchIcon.tsx';
+import { DinnerIcon } from './icons/DinnerIcon.tsx';
+import { DessertIcon } from './icons/DessertIcon.tsx';
+import { SnackIcon } from './icons/SnackIcon.tsx';
+import { DrinkIcon } from './icons/DrinkIcon.tsx';
 
 interface InitialInspirationProps {
   onCategoryClick: (category: string) => void;

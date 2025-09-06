@@ -1,4 +1,4 @@
-import { Recipe } from '../types';
+import { Recipe } from '../types.ts';
 
 // Dados da Receita de Exemplo
 const mockRecipe: Recipe = {
